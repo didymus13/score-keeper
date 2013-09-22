@@ -22,6 +22,8 @@ class UsersControllerTest extends ControllerTestCase {
  * @return void
  */
 	public function testLogin() {
+            $result = $this->testAction('/users/login');
+            debug($result);
 	}
 
 /**
@@ -30,6 +32,8 @@ class UsersControllerTest extends ControllerTestCase {
  * @return void
  */
 	public function testLogout() {
+            $result = $this->testAction('/users/login');
+            debug($result);
 	}
 
 }
