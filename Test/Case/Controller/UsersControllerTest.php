@@ -22,7 +22,16 @@ class UsersControllerTest extends ControllerTestCase {
  * @return void
  */
 	public function testLogin() {
-            $result = $this->testAction('/users/login');
+            $result = $this->testAction('/users/login', array('return' => 'view'));
+            $this->assertTextContains('email', $result);
+            $this->assertTextContains('password', $result);
+            $this->assertTextContains('Please login', $result);
+            
+            $data = array('User' => array(
+                'email' => 'test@example.com',
+                'password' => '12345678'
+            ));
+            $result = $this->testAction('users/login', array('data' => $data, 'method' => 'post', 'return' => 'view'));
             debug($result);
 	}
 
