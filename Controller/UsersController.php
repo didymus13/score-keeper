@@ -1,15 +1,6 @@
 <?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- * Description of users_controller
- *
- * @author maddox
- */
+App::uses('AppController', 'Controller');
 class UsersController extends AppController {
     public $scaffold;
     
@@ -32,5 +23,4 @@ class UsersController extends AppController {
         $this->Auth->allow('add');
     }
 }
-
 ?>
