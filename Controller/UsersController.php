@@ -12,6 +12,7 @@ class UsersController extends AppController {
                 $this->Session->setFlash(__('Username or password is incorrect'), 'default', array(), 'auth');
             }
         }
+        $this->set('title_for_layout', 'Please log in:');
     }
     
     public function logout() {

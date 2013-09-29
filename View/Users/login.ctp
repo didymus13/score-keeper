@@ -1,3 +1,3 @@
 <?= $this->Form->create() ?>
-<?= $this->Form->inputs(array('email', 'password', array('label' => __('Please login')))) ?>
+<?= $this->Form->inputs(array('legend' => 'Please Log in', 'email', 'password')) ?>
 <?= $this->Form->end(__('Login')) ?>

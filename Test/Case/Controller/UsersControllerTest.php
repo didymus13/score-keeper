@@ -25,14 +25,14 @@ class UsersControllerTest extends ControllerTestCase {
             $result = $this->testAction('/users/login', array('return' => 'view'));
             $this->assertTextContains('email', $result);
             $this->assertTextContains('password', $result);
-            $this->assertTextContains('Please login', $result);
+            $this->assertTextContains('Please log in', $result);
             
             $data = array('User' => array(
                 'email' => 'test@example.com',
                 'password' => '12345678'
             ));
             $result = $this->testAction('users/login', array('data' => $data, 'method' => 'post', 'return' => 'view'));
-            debug($result);
+            $this->assertTextNotContains('Please log in', $result);
 	}
 
 /**
@@ -41,8 +41,8 @@ class UsersControllerTest extends ControllerTestCase {
  * @return void
  */
 	public function testLogout() {
-            $result = $this->testAction('/users/login');
-            debug($result);
+            $result = $this->testAction('/users/logout', array('return' => 'view'));
+            $this->assertTextContains('Please log in', $result);
 	}
 
 }
