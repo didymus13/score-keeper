@@ -17,7 +17,7 @@ class Army extends AppModel {
     );
     
     public $belongsTo = array('User');
-    public $hasAndBelongsToMany = array('Campaign');
+    public $hasAndBelongsToMany = array('Campaign', 'CampaignGame');
 }
 
 ?>
