@@ -19,21 +19,21 @@ class UsersController extends AppController {
         return $this->redirect($this->Auth->logout());
     }
    
-    public function index() {
-        $users = $this->User->find('all');
-        $this->set(array(
-            'users' => $users,
-            '_serialize' => array('users')
-        ));
-    }
+//    public function index() {
+//        $users = $this->User->find('all');
+//        $this->set(array(
+//            'users' => $users,
+//            '_serialize' => array('users')
+//        ));
+//    }
     
-    public function view($id) {
-        $user = $this->User->findById($id);
-        $this->set(array(
-            'user' => $user,
-            '_serialize' => array('user')
-        ));
-    }
+//    public function view($id) {
+//        $user = $this->User->findById($id);
+//        $this->set(array(
+//            'user' => $user,
+//            '_serialize' => array('user')
+//        ));
+//    }
     
 //    public function edit($id=null) {
 //        $this->User->id = $id;

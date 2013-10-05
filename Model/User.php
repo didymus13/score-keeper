@@ -4,7 +4,7 @@
  *
  * @author maddox
  */
-App::uses('SimplePasswordHasher', 'Controller/Component/Auth');
+//App::uses('SimplePasswordHasher', 'Controller/Component/Auth');
 class User extends AppModel {
     public $validate = array(
         'email' => array(
@@ -17,12 +17,12 @@ class User extends AppModel {
         )
     );
     
-    public function beforeSave($options = array()) {
-        if (!$this->id) {
-            $passwordHasher = new SimplePasswordHasher();
-            $this->data['User']['password'] = $passwordHasher->hash($this->data['User']['password']);
-        }
-        return true;
-    }
+//    public function beforeSave($options = array()) {
+//        if (!$this->id) {
+//            $passwordHasher = new SimplePasswordHasher();
+//            $this->data['User']['password'] = $passwordHasher->hash($this->data['User']['password']);
+//        }
+//        return true;
+//    }
 }
 ?>

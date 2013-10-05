@@ -35,4 +35,37 @@ class AppController extends Controller {
     public $components = array(
         'Session', 'DebugKit.Toolbar', 'RequestHandler'
     );
+    
+        public function index() {
+        ${Inflector::pluralize($this->modelClass)} = $this->{$this->modelClass}->find('all');
+        $this->set(array(
+        Inflector::pluralize($this->modelClass) => ${Inflector::pluralize($this->modelClass)},
+            '_serialize' => array(Inflector::pluralize($this->modelClass))
+        ));
+    }
+    
+    public function view($id) {
+        ${$this->modelClass} = $this->{$this->modelClass}->findById($id);
+        $this->set(array(
+            $this->modelClass => ${$this->modelClass},
+            '_serialize' => array($this->modelClass)
+        ));
+    }
+    
+    public function edit($id=null) {
+        $this->{$this->modelClass}->id = $id;
+        $message = ($this->{$this->modelClass}->save($this->request->data)) ? 'Saved' : 'Error';
+        $this->set(array(
+            'message' => $message,
+            '_serialize' => array('message')
+        ));
+    }
+    
+    public function delete($id) {
+        $message = ($this->{$this->modelClass}->delete($id)) ? 'Deleted' : 'Error';
+        $this->set(array(
+            'message' => $message,
+            '_serialize' => array('message')
+        ));
+    }
 }
