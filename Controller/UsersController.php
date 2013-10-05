@@ -18,10 +18,38 @@ class UsersController extends AppController {
     public function logout() {
         return $this->redirect($this->Auth->logout());
     }
-    
-    public function beforeFilter() {
-        parent::beforeFilter();
-        $this->Auth->allow('add');
+   
+    public function index() {
+        $users = $this->User->find('all');
+        $this->set(array(
+            'users' => $users,
+            '_serialize' => array('users')
+        ));
     }
+    
+    public function view($id) {
+        $user = $this->User->findById($id);
+        $this->set(array(
+            'user' => $user,
+            '_serialize' => array('user')
+        ));
+    }
+    
+//    public function edit($id=null) {
+//        $this->User->id = $id;
+//        $message = ($this->User->save($this->request->data)) ? 'Saved' : 'Error';
+//        $this->set(array(
+//            'message' => $message,
+//            '_serialize' => array('message')
+//        ));
+//    }
+//    
+//    public function delete($id) {
+//        $message = ($this->User->delete($id)) ? 'Deleted' : 'Error';
+//        $this->set(array(
+//            'message' => $message,
+//            '_serialize' => array('message')
+//        ));
+//    }
 }
 ?>

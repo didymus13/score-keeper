@@ -33,22 +33,6 @@ App::uses('Controller', 'Controller');
  */
 class AppController extends Controller {
     public $components = array(
-        'Auth' => array(
-            'authenticate' => array(
-                'Form' => array(
-                    'passwordHasher' => array(
-                        'className' => 'Simple',
-                        'hashType' => 'sha256'
-                    ),
-                    'fields' => array('username' => 'email')
-                )
-            ),
-            'loginRedirect' => array('controller' => 'users', 'action' => 'index')
-        ),
-        'Session', 'DebugKit.Toolbar'
+        'Session', 'DebugKit.Toolbar', 'RequestHandler'
     );
-    
-    public function beforeFilter() {
-        $this->Auth->allow(array('view', 'index'));
-    }
 }
