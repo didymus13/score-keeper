@@ -1,6 +1,0 @@
-[submodule "Vendor/oauth2-php"]
-	path = Vendor/oauth2-php
-	url = git://github.com/quizlet/oauth2-php.git
-[submodule "Plugin/OAuth"]
-	path = Plugin/OAuth
-	url = git://github.com/thomseddon/cakephp-oauth-server.git
