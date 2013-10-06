@@ -33,10 +33,20 @@ App::uses('Controller', 'Controller');
  */
 class AppController extends Controller {
     public $components = array(
-        'Session', 'DebugKit.Toolbar', 'RequestHandler'
+        'Session', 'DebugKit.Toolbar', 'RequestHandler', 'OAuth.OAuth'
     );
     
-        public function index() {
+    public function beforeFilter() {
+        $this->OAuth->authenticate = array(
+            'fields' => array(
+                'username' => 'email'
+            )
+        );
+        $this->OAuth->allow('index', 'view');
+        parent::beforeFilter();
+    }
+    
+    public function index() {
         ${Inflector::pluralize($this->modelClass)} = $this->{$this->modelClass}->find('all');
         $this->set(array(
         Inflector::pluralize($this->modelClass) => ${Inflector::pluralize($this->modelClass)},
