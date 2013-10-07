@@ -20,7 +20,7 @@
 $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework');
 ?>
 <!DOCTYPE html>
-<html>
+<html class="no-js">
 <head>
 	<?php echo $this->Html->charset(); ?>
 	<title>
@@ -31,12 +31,12 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 		echo $this->Html->meta('icon');
 
 		echo $this->Html->css('cake.generic');
-
+                echo $this->Html->css('smoothness/jquery-ui-1.10.3.custom');
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
 	?>
 </head>
-<body class="no-js">
+<body>
 	<div id="container">
 		<div id="header">
 			<h1><?php echo $this->Html->link($cakeDescription, 'http://cakephp.org'); ?></h1>
@@ -59,8 +59,9 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 	</div>
 	<?php // echo $this->element('sql_dump'); ?>
     <?= $this->Html->script('jquery.min') ?>
-    <?= $this->Html->script('modernizr.min') ?>
+    <?= $this->Html->script('modernizr') ?>
     <?= $this->Html->script('response.min') ?>
+    <?= $this->Html->script('http://code.jquery.com/ui/1.10.3/jquery-ui.js') ?>
     <?= $this->fetch('script') ?>
 </body>
 </html>
