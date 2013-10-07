@@ -36,7 +36,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 		echo $this->fetch('css');
 	?>
 </head>
-<body>
+<body class="tiny">
 	<div id="container">
 		<div id="header">
 			<h1><?php echo $this->Html->link($cakeDescription, 'http://cakephp.org'); ?></h1>
@@ -61,6 +61,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
     <?= $this->Html->script('jquery.min') ?>
     <?= $this->Html->script('modernizr') ?>
     <?= $this->Html->script('response.min') ?>
+    <?= $this->Html->script('response.callbacks') ?>
     <?= $this->Html->script('http://code.jquery.com/ui/1.10.3/jquery-ui.js') ?>
     <?= $this->fetch('script') ?>
 </body>
