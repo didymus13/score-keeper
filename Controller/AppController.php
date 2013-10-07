@@ -48,7 +48,7 @@ class AppController extends Controller {
     
     public function beforeFilter() {
         $this->Auth->authenticate = array('Form');
-        $this->Auth->allow(); // set as array('view', 'index') when ready to lock down
+        $this->Auth->allow(array('view', 'index')); // set as array('view', 'index') when ready to lock down
         parent::beforeFilter();
     }
     
@@ -79,6 +79,14 @@ class AppController extends Controller {
     
     public function delete($id) {
         $message = ($this->{$this->modelClass}->delete($id)) ? 'Deleted' : 'Error';
+        $this->set(array(
+            'message' => $message,
+            '_serialize' => array('message')
+        ));
+    }
+    
+    public function add() {
+        $message = ($this->{$this->modelClass}->save($this->request->data)) ? 'Saved' : 'Error';
         $this->set(array(
             'message' => $message,
             '_serialize' => array('message')

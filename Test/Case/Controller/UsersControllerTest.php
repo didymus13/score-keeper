@@ -1,5 +1,5 @@
 <?php
-App::uses('UsersController', 'Controller');
+App::uses('UsersController', 'Controller', 'Session');
 
 /**
  * UsersController Test Case
@@ -22,17 +22,18 @@ class UsersControllerTest extends ControllerTestCase {
  * @return void
  */
 	public function testLogin() {
-            $result = $this->testAction('/users/login', array('return' => 'view'));
-            $this->assertTextContains('email', $result);
-            $this->assertTextContains('password', $result);
-            $this->assertTextContains('Please log in', $result);
+            $view = $this->testAction('/users/login', array('return' => 'view'));
+            $this->assertTextContains('name="data[User][username]"', $view);
+            $this->assertTextContains('name="data[User][password]"', $view);
+            $this->assertTextContains('Login', $view);
             
             $data = array('User' => array(
-                'email' => 'test@example.com',
+                'username' => 'mrtester', 
                 'password' => '12345678'
             ));
-            $result = $this->testAction('users/login', array('data' => $data, 'method' => 'post', 'return' => 'view'));
-            $this->assertTextNotContains('Please log in', $result);
+            $result = $this->testAction('/users/login', array('data' => $data, 'method' => 'post', 'return' => 'vars'));
+            $this->assertTextNotContains('Username or password is incorrect', print_r($result, true));
+            debug($result);
 	}
 
 /**
@@ -42,7 +43,8 @@ class UsersControllerTest extends ControllerTestCase {
  */
 	public function testLogout() {
             $result = $this->testAction('/users/logout', array('return' => 'view'));
-            $this->assertTextContains('Please log in', $result);
+            debug($result);
 	}
+        
 
 }
