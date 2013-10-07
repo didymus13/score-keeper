@@ -33,10 +33,26 @@ App::uses('Controller', 'Controller');
  */
 class AppController extends Controller {
     public $components = array(
-        'Session', 'DebugKit.Toolbar', 'RequestHandler'
+        'Session', 'DebugKit.Toolbar', 'RequestHandler', 
+        'Auth' => array(
+            'authenticate' => array(
+                'Form' => array(
+                    'passwordHasher' => array(
+                        'className' => 'Simple',
+                        'hashType' => 'sha256'
+                    )
+                )
+            )
+        )
     );
     
-        public function index() {
+    public function beforeFilter() {
+        $this->Auth->authenticate = array('Form');
+        $this->Auth->allow(); // set as array('view', 'index') when ready to lock down
+        parent::beforeFilter();
+    }
+    
+    public function index() {
         ${Inflector::pluralize($this->modelClass)} = $this->{$this->modelClass}->find('all');
         $this->set(array(
         Inflector::pluralize($this->modelClass) => ${Inflector::pluralize($this->modelClass)},
